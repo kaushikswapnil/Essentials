@@ -52,7 +52,7 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 		private: \
 		_Enumeration m_Value; \
 		\
-		static const size_t _GetCount \
+		static constexpr size_t _GetCount \
 		{ \
 			static const int count = IDENTITY(COUNT(__VA_ARGS__)); \
 		} \
