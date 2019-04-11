@@ -52,31 +52,32 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 		private: \
 		_Enumeration m_Value; \
 		\
-		static const size_t _count = IDENTITY(COUNT(__VA_ARGS__));
+		static const size_t _GetCount \
+		{ \
+			static const int count = IDENTITY(COUNT(__VA_ARGS__)); \
+		} \
 		\
 		static const int* const _GetValues() \
 		{ \
-			static const int _values[] = { IDENTITY(PREFIX__ArgumentToIntConverter_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
-			return _values; \
+			static const int values[] = { IDENTITY(PREFIX__ArgumentToIntConverter_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
+			return values; \
 		} \
 		\
 		static const char* const _GetNames() \
 		{ \
-			static const char* rawNames = { IDENTITY(STRINGIZE_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
-			\
-			static char* processedNames[_count]; \ //Creating an array 
+			static const char* const rawNames[] = { IDENTITY(STRINGIZE_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
+			static char* processedNames[_GetCount()]; /*Creating an array*/ \
 			static bool initialized = false; \
 			\
 			if (!initialized) \
 			{ \
-				for (size_t index = 0; index < _count; ++index) \
+				for (size_t index = 0; index < _GetCount(); ++index) \
 				{ \
-					//remove offending characters
-					size_t length = std::strcspn(rawNames[index], "=\t\n\r"); \ //strcspn returns the first index where any of the characters given matches
+					size_t length = std::strcspn(rawNames[index], "=\t\n\r"); /*remove offending characters. strcspn returns the first index where any of the characters given matches*/\
 					\
 					processedNames[index] = new char[length + 1]; \
 					\
-					std::strncpy(processedNames[index], rawNames[index], length); \//copy good characters
+					std::strncpy(processedNames[index], rawNames[index], length); /*copy good characters*/\
 					\
 					(processedNames[index])[length] = "\0"; \
 				} \
