@@ -17,9 +17,11 @@
 #define MAP2(m, x, ...) m(x) IDENTITY(MAP1(m, __VA_ARGS__))
 #define MAP3(m, x, ...) m(x) IDENTITY(MAP2(m, __VA_ARGS__))
 #define MAP4(m, x, ...) m(x) IDENTITY(MAP3(m, __VA_ARGS__))
+#define MAP5(m, x, ...) m(x) IDENTITY(MAP4(m, __VA_ARGS__))
+#define MAP6(m, x, ...) m(x) IDENTITY(MAP5(m, __VA_ARGS__))
 
-#define EVALUATE_COUNT(_1, _2, _3, _4, count, ...) count
-#define COUNT(...) IDENTITY(EVALUATE_COUNT(__VA_ARGS__, 4, 3, 2, 1))
+#define EVALUATE_COUNT(_1, _2, _3, _4, _5, _6, count, ...) count
+#define COUNT(...) IDENTITY(EVALUATE_COUNT(__VA_ARGS__, 6, 5, 4, 3, 2, 1))
 
 #define STRINGIZE_SINGLE(expression) #expression,
 #define STRINGIZE_MULTI_ARGUMENTS(...) IDENTITY(MAP(STRINGIZE_SINGLE, __VA_ARGS__))
@@ -31,31 +33,36 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 
 	operator int() const { return _m_Value; }  //This is a type cast operator. Think (int)_ArgumentToIntConverter. Lets this be converted back to an integer
 	int _m_Value; 
-}; 
+};
 
 #define PREFIX__ArgumentToIntConverter_SINGLE(expression) (_ArgumentToIntConverter)expression, //Keeping the comma
 #define PREFIX__ArgumentToIntConverter_MULTI_ARGUMENTS(...) IDENTITY(MAP(PREFIX__ArgumentToIntConverter_SINGLE, __VA_ARGS__))
 
-#define SMART_ENUM(_EnumName, ...) \
-	struct _EnumName \
+#define SMART_ENUM(_Enumname, ...) \
+	struct _Enumname \
 	{ \
 		enum _Enumeration \
 		{ \
 			__VA_ARGS__ \
 		}; \
 		\
-		_EnumName(const _Enumeration& value) : m_Value(value) {} \
-		_EnumName(const _EnumName& other) : m_Value(other.m_Value) {} \
-		const _EnumName& operator=(const _Enumeration& value) { m_Value = value; } \
+		_Enumname(const _Enumeration& value) : m_Value(value) {} \
+		_Enumname(const _Enumname& other) : m_Value(other.m_Value) {} \
+		const _Enumname& operator=(const _Enumeration& value) { m_Value = value; } \
 		operator _Enumeration() { return static_cast<_Enumeration>(m_Value); } \
+        friend std::ostream &operator<<(std::ostream& outputStream, const _Enumname& smartEnum) \
+        { \
+            outputStream << smartEnum._GetStringForValue(); \
+            return outputStream; \
+        } \
 		\
 		private: \
 		_Enumeration m_Value; \
 		\
-		static const size_t _GetCount() \
+        static constexpr size_t m_Count = IDENTITY(COUNT(__VA_ARGS__)); \
+		static constexpr size_t _GetCount() \
 		{ \
-			static const int count = IDENTITY(COUNT(__VA_ARGS__)); \
-			return count; \
+			return m_Count; \
 		} \
 		\
 		static const int* const _GetValues() \
@@ -63,28 +70,42 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 			static const int values[] = { IDENTITY(PREFIX__ArgumentToIntConverter_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
 			return values; \
 		} \
-		\
-		static const char* const _GetNames() \
+        \
+		static const char* const* _GetNames() /*returns a pointer to a const char* const. That is, pointer to array of chars*/\
 		{ \
-			static const char* const rawNames[] = { IDENTITY(STRINGIZE_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
-			static char* processedNames[_GetCount()]; /*Creating an array*/ \
 			static bool initialized = false; \
+            static const char* const rawNames[] = { IDENTITY(STRINGIZE_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
+            static char* processedNames[m_Count]; \
 			\
 			if (!initialized) \
 			{ \
-				for (size_t index = 0; index < _GetCount(); ++index) \
-				{ \
-					size_t length = std::strcspn(rawNames[index], "=\t\n\r"); /*remove offending characters. strcspn returns the first index where any of the characters given matches*/\
-					\
-					processedNames[index] = new char[length + 1]; \
-					\
-					std::strncpy_s(processedNames[index], rawNames[index], length); /*copy good characters*/\
-					\
-					(processedNames[index])[length] = "\0"; \
-				} \
+                for (size_t index = 0; index < m_Count; ++index) \
+                { \
+                    size_t length = std::strcspn(rawNames[index], "=\t\n\r"); /*remove offending characters. strcspn returns the first index where any of the characters given matches*/\
+                    \
+                    processedNames[index] = new char[length + 1]; \
+                    \
+                    std::strncpy(processedNames[index], rawNames[index], length); /*copy good characters*/\
+                    \
+                    (processedNames[index])[length] = '\0'; \
+                } \
+                initialized = true; \
 			} \
 			\
 			return processedNames; \
 		} \
+        \
+        const char* _GetStringForValue() const \
+        { \
+            const int* const values = _GetValues(); \
+            for (size_t index = 0; index < m_Count; ++index) \
+            { \
+                if (values[index] == m_Value) \
+                    return _GetNames()[index]; \
+            } \
+            \
+            /*Could not find index of enum value. Something is wrong. #TODO Have your own debug and assert system.*/\
+            return nullptr; \
+        } \
 	};
 

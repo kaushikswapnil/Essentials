@@ -18,15 +18,12 @@
     <ClInclude Include="pch.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="smartenum.h">
+    <ClInclude Include="SmartEnum.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Essentials.cpp">
       <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
