@@ -52,9 +52,10 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 		private: \
 		_Enumeration m_Value; \
 		\
-		static constexpr size_t _GetCount \
+		static const size_t _GetCount() \
 		{ \
 			static const int count = IDENTITY(COUNT(__VA_ARGS__)); \
+			return count; \
 		} \
 		\
 		static const int* const _GetValues() \
@@ -77,7 +78,7 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 					\
 					processedNames[index] = new char[length + 1]; \
 					\
-					std::strncpy(processedNames[index], rawNames[index], length); /*copy good characters*/\
+					std::strncpy_s(processedNames[index], rawNames[index], length); /*copy good characters*/\
 					\
 					(processedNames[index])[length] = "\0"; \
 				} \
