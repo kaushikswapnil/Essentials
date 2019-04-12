@@ -17,7 +17,7 @@
 //Can be used in switch case like normal enums
 
 //Defines a const unsigned int _variadicArgumentsCount wherever you declare this. 
-#define MACRO_VARIADIC_ARGUMENT_COUNT(...) (std::tuple_size<decltype(std::make_tuple(__VA_ARGS__))>::value)
+#define MACRO_VARIADIC_ARGUMENT_COUNT(...) std::tuple_size<decltype(std::make_tuple(__VA_ARGS__))>::value
 
 //This macro should help us to apply a macro/function to all pass arguments
 #define MAP(macro, ...) \
