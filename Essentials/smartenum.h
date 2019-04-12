@@ -1,9 +1,28 @@
 #pragma once
 
+#include <tuple>
+
+//#####################
+//SmartEnum - Documentation
+//#####################
+//To create:
+//	Use SMARTENUM(<enum name>, <element1>, <element2>, ...);
+//	You can also specify type by using SMARTENUM_T(<enum name>, <type>, <element1>, ..); 
+//	SMARTENUM(Color, Red, Green, Blue); //same as enum Color { Red, Green, Blue };
+//	SMARTENUM(Color, Red = 2, Green, Blue = 4);
+//To assign to a variable;
+//	Color color = Color::Red;
+//To use with ostream:
+//	std::cout << color; //Should print Red
+//Can be used in switch case like normal enums
+
+//Defines a const unsigned int _variadicArgumentsCount wherever you declare this. 
+#define MACRO_VARIADIC_ARGUMENT_COUNT(...) (std::tuple_size<decltype(std::make_tuple(__VA_ARGS__))>::value)
+
 //This macro should help us to apply a macro/function to all pass arguments
 #define MAP(macro, ...) \
     IDENTITY( \
-        APPLY(CHOOSE_MAP_START, COUNT(__VA_ARGS__)) \
+        APPLY(CHOOSE_MAP_START, MACRO_VARIADIC_ARGUMENT_COUNT(__VA_ARGS__)) \
             (macro, __VA_ARGS__))
 
 #define CHOOSE_MAP_START(count) MAP##count
@@ -20,9 +39,6 @@
 #define MAP5(m, x, ...) m(x) IDENTITY(MAP4(m, __VA_ARGS__))
 #define MAP6(m, x, ...) m(x) IDENTITY(MAP5(m, __VA_ARGS__))
 
-#define EVALUATE_COUNT(_1, _2, _3, _4, _5, _6, count, ...) count
-#define COUNT(...) IDENTITY(EVALUATE_COUNT(__VA_ARGS__, 6, 5, 4, 3, 2, 1))
-
 #define STRINGIZE_SINGLE(expression) #expression,
 #define STRINGIZE_MULTI_ARGUMENTS(...) IDENTITY(MAP(STRINGIZE_SINGLE, __VA_ARGS__))
 
@@ -38,10 +54,10 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 #define PREFIX__ArgumentToIntConverter_SINGLE(expression) (_ArgumentToIntConverter)expression, //Keeping the comma
 #define PREFIX__ArgumentToIntConverter_MULTI_ARGUMENTS(...) IDENTITY(MAP(PREFIX__ArgumentToIntConverter_SINGLE, __VA_ARGS__))
 
-#define SMART_ENUM(_Enumname, ...) \
+#define SMARTENUM_T(_Enumname, _Enumtype, ...) \
 	struct _Enumname \
 	{ \
-		enum _Enumeration \
+		enum _Enumeration : _Enumtype \
 		{ \
 			__VA_ARGS__ \
 		}; \
@@ -52,26 +68,22 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 		operator _Enumeration() { return static_cast<_Enumeration>(m_Value); } \
         friend std::ostream &operator<<(std::ostream& outputStream, const _Enumname& smartEnum) \
         { \
-            outputStream << smartEnum._GetStringForValue(); \
+            outputStream << smartEnum.GetStringForValue(); \
             return outputStream; \
         } \
 		\
 		private: \
 		_Enumeration m_Value; \
 		\
-        static constexpr size_t m_Count = IDENTITY(COUNT(__VA_ARGS__)); \
-		static constexpr size_t _GetCount() \
-		{ \
-			return m_Count; \
-		} \
+        static constexpr size_t m_Count = MACRO_VARIADIC_ARGUMENT_COUNT(__VA_ARGS__); \
 		\
-		static const int* const _GetValues() \
+		static const int* const GetValues() \
 		{ \
 			static const int values[] = { IDENTITY(PREFIX__ArgumentToIntConverter_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
 			return values; \
 		} \
         \
-		static const char* const* _GetNames() /*returns a pointer to a const char* const. That is, pointer to array of chars*/\
+		static const char* const* GetNames() /*returns a pointer to a const char* const*. That is, pointer to array of const char*/\
 		{ \
 			static bool initialized = false; \
             static const char* const rawNames[] = { IDENTITY(STRINGIZE_MULTI_ARGUMENTS(__VA_ARGS__)) }; \
@@ -95,7 +107,7 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 			return processedNames; \
 		} \
         \
-        const char* _GetStringForValue() const \
+        const char* GetStringForValue() const \
         { \
             const int* const values = _GetValues(); \
             for (size_t index = 0; index < m_Count; ++index) \
@@ -107,5 +119,6 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
             /*Could not find index of enum value. Something is wrong. #TODO Have your own debug and assert system.*/\
             return nullptr; \
         } \
-	};
+	}
 
+#define SMARTENUM(_Enumname, ...) SMARTENUM_T(_Enumname, int, IDENTITY(__VA_ARGS__))

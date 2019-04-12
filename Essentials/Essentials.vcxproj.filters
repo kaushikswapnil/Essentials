@@ -21,9 +21,18 @@
     <ClInclude Include="SmartEnum.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="CriticalSection.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CriticalSection.cpp">
       <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
