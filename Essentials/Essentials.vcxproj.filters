@@ -9,31 +9,54 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Source\Log">
+      <UniqueIdentifier>{5e2abe93-73b1-4ec7-8bc8-786255df64bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\ImplementationHelpers">
+      <UniqueIdentifier>{0aa1d91a-4886-44ea-9114-7bae40d8003e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Assertion">
+      <UniqueIdentifier>{cadf8676-a315-40b3-b5a7-a7f6acf08338}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="SmartEnum.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>Source</Filter>
+      <Filter>Source\ImplementationHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartEnum.h">
+      <Filter>Source\ImplementationHelpers</Filter>
     </ClInclude>
     <ClInclude Include="CriticalSection.h">
-      <Filter>Source</Filter>
+      <Filter>Source\ImplementationHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLogPolicy.h">
+      <Filter>Source\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Source\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="LogPolicy.h">
+      <Filter>Source\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Assertion.h">
+      <Filter>Source\Assertion</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Source\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
-      <Filter>Main</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="CriticalSection.cpp">
-      <Filter>Main</Filter>
+      <Filter>Source\ImplementationHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLogPolicy.cpp">
+      <Filter>Source\Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
