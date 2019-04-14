@@ -6,6 +6,7 @@
 	#include <stdexcept>
 
 	#include "smartenum.h"
+#include "LogSystem.h"
 
 //#####################
 //Errors - Documentation
@@ -31,6 +32,8 @@
 				//#TODO Add better reporting capabilities
 				const std::string output = "[" + assertLevel.ToString() + "] " + message + ". Condition Failed: " + conditionStr + ". File: " + fileName + ". Line: " + std::to_string(lineNumber);
 				std::cout << output;
+
+				LOG(output);
 			}
 		}
 	}

@@ -10,8 +10,12 @@ public:
 	FileLogPolicy() = default;
 	~FileLogPolicy() = default;
 
-	void OpenOStream(const std::string& ostreamName) override;
+	void OpenOStream(const std::string& ostreamName);
+	void CloseOStream();
+	void Write(const std::string& message);
+
+	/*void OpenOStream(const std::string& ostreamName) override;
 	void CloseOStream() override;
-	void Write(const std::string& message) override;
+	void Write(const std::string& message) override;*/
 };
 
