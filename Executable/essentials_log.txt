@@ -1,0 +1,2 @@
+[SoftAssert] Sup. Condition Failed: a != 0. File: d:\swapnil\projects\source\repos\essentials\executable\executable.cpp. Line: 29
+[SoftAssert] Sup. Condition Failed: a != 0. File: d:\swapnil\projects\source\repos\essentials\executable\executable.cpp. Line: 29TestLog from main

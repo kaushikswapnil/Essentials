@@ -6,7 +6,7 @@
 	#include <stdexcept>
 
 	#include "smartenum.h"
-#include "LogSystem.h"
+	#include "LogSystem.h"
 
 //#####################
 //Errors - Documentation

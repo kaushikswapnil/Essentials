@@ -18,7 +18,7 @@ public: \
 	\
 	_CallConv static _Classname& GetInstance() \
 	{ \
-		static _Classname instance(__VA_ARGS__); \
+		static _Classname instance(IDENTITY(__VA_ARGS__)); \
 		return instance; \
 		\
 	} \
