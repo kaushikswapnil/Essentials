@@ -20,9 +20,9 @@ public:
 	template<typename...Args>
 	void PrintLog(Args... args)
 	{
-		//m_Lock.Lock();
+		m_Lock.Lock();
 		PrintLog_Internal(args...);
-		//m_Lock.Unlock();
+		m_Lock.Unlock();
 	}
 private:
 	void PrintLog_Internal()
@@ -39,6 +39,6 @@ private:
 	}
 
 	LoggingPolicy m_Policy;
-	//CriticalSection m_Lock;
+	CriticalSection m_Lock;
 	std::stringstream m_LogStream;
 };

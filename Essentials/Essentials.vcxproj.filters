@@ -58,5 +58,8 @@
     <ClCompile Include="FileLogPolicy.cpp">
       <Filter>Source\Log</Filter>
     </ClCompile>
+    <ClCompile Include="LogSystem.cpp">
+      <Filter>Source\Log</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
