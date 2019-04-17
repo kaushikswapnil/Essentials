@@ -6,6 +6,7 @@
 	#include <stdexcept>
 
 	#include "smartenum.h"
+	#include "LogSystem.h"
 
 //#####################
 //Errors - Documentation
@@ -26,13 +27,20 @@
 		{
 			SMARTENUM(AssertLevel, Warning, SoftAssert, HardAssert, CriticalRunTimeError);
 
-			inline void ReportAssertion(const AssertLevel& assertLevel, const std::string& message, const std::string& conditionStr, const std::string& fileName, const long lineNumber)
+			inline void ReportAssertion(const AssertLevel& assertLevel, const char* const message, const char* const conditionStr, const char* const fileName, const long lineNumber)
 			{
 				//#TODO Add better reporting capabilities
-				const std::string output = "[" + assertLevel.ToString() + "] " + message + ". Condition Failed: " + conditionStr + ". File: " + fileName + ". Line: " + std::to_string(lineNumber);
+				std::string output = "[" + assertLevel.ToString() + "] ";
+				output.append(message);
+				output.append(". Condition Failed: ");
+				output.append(conditionStr);
+				output.append(". File: ");
+				output.append(fileName);
+				output.append(". Line: ");
+				output.append(std::to_string(lineNumber));
 				std::cout << output;
 
-				//LOG(output);
+				//LOG(output.c_str());
 			}
 		}
 	}

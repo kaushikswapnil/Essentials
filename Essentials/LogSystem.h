@@ -6,7 +6,7 @@
 class LogSystem
 {
 public:
-	__declspec(dllexport) static void PrintLog(const std::string& message);
+	__declspec(dllexport) static void PrintLog(const char* const message);
 
 private:
 	static Logger<FileLogPolicy> m_Logger;
