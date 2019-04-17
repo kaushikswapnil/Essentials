@@ -75,6 +75,11 @@
 		} \
 	} while (false)
 
+    #define STATICASSERT(condition, message) \
+    { \
+        static_assert((condition), message); \
+    } 
+
 	//Critical run time error throws a std::runtime_error with the message parameters;
 	#define CRITICAL_RUNTIME_ERROR(condition, message) \
 	do \
