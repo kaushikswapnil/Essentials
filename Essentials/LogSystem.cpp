@@ -1,9 +1,14 @@
 #include "pch.h"
 #include "LogSystem.h"
 
-Logger<FileLogPolicy> LogSystem::m_Logger("essentials_log.txt");
+Logger LogSystem::m_Logger;
 
-void LogSystem::PrintLog(const char* const message)
+void LogSystem::PrintLog(const std::string& message)
 {
 	m_Logger.PrintLog(message);
+}
+
+void LogSystem::Configure(const std::string& fileLogName, const bool logToDebug, const bool logToConsole)
+{
+	m_Logger.Configure(fileLogName, logToDebug, logToConsole);
 }

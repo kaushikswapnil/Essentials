@@ -18,6 +18,9 @@
     <Filter Include="Source\Assertion">
       <UniqueIdentifier>{cadf8676-a315-40b3-b5a7-a7f6acf08338}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Log\LogPolicy">
+      <UniqueIdentifier>{476ea7bc-658f-477d-877b-89e87c03a8d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -32,12 +35,6 @@
     <ClInclude Include="CriticalSection.h">
       <Filter>Source\ImplementationHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="FileLogPolicy.h">
-      <Filter>Source\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="LogPolicy.h">
-      <Filter>Source\Log</Filter>
-    </ClInclude>
     <ClInclude Include="Assertion.h">
       <Filter>Source\Assertion</Filter>
     </ClInclude>
@@ -47,6 +44,21 @@
     <ClInclude Include="LogSystem.h">
       <Filter>Source\Log</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleLogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemConfiguration.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -55,11 +67,20 @@
     <ClCompile Include="CriticalSection.cpp">
       <Filter>Source\ImplementationHelpers</Filter>
     </ClCompile>
-    <ClCompile Include="FileLogPolicy.cpp">
-      <Filter>Source\Log</Filter>
-    </ClCompile>
     <ClCompile Include="LogSystem.cpp">
       <Filter>Source\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogPolicy.cpp">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLogPolicy.cpp">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLogPolicy.cpp">
+      <Filter>Source\Log\LogPolicy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
