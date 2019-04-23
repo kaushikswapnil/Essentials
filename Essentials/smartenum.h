@@ -120,18 +120,19 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
         \
 		static constexpr bool IsUnwantedCharacterInName(const char c) \
 		{ \
+            bool retval = false; \
 			switch(c) \
 			{ \
 				case ' ': \
 				case '=': \
-					return true; \
+					retval = true; \
 					break; \
 				default: \
-					return isdigit(c); \
+					retval = isdigit(c); \
 					break; \
 			} \
 			\
-			return false; \
+			return retval; /*#TODO Try the following approach (single return statement for constexpr): return ((isdigit(c) ? true : ((c == ' ' || c == "="))))*/\
 		} \
 		static const std::string* const GetNames() \
 		{ \

@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 #include "ILogPolicy.h"
+#include <memory>
 
 class Logger 
 {
