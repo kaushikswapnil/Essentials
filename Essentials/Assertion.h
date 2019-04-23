@@ -38,9 +38,8 @@
 				output.append(fileName);
 				output.append(". Line: ");
 				output.append(std::to_string(lineNumber));
-				std::cout << output;
 
-				//LOG(output.c_str());
+				LOG(output.c_str());
 			}
 		}
 	}
