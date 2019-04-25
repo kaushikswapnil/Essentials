@@ -161,6 +161,7 @@
     <ClInclude Include="LogSystem.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="ILogPolicy.h" />
+    <ClInclude Include="MacroTricks.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SmartEnum.h" />
