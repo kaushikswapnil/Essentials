@@ -13,8 +13,11 @@ public:
 
 	void OpenOStream(const std::string& ostreamName) override { }
 	void CloseOStream() override { }
-	void Write(const std::string& message) override { }
-	const bool IsOStreamOpen() const override { return IsDebuggerPresent(); }
+	void Write(const std::string& message) override;
+	const bool IsOStreamOpen() const override;
+
+private:
+	const std::wstring ConvertStringToWString(const std::string& stringToConvert) const;
 };
 
 //#endif // _DEBUG
