@@ -14,3 +14,9 @@ void FileLogPolicy::CloseOStream()
 	HARDASSERT(outStream.is_open(), "Trying to close a file that is not open.");
 	outStream.close();
 }
+
+void FileLogPolicy::Write(const std::string& message)
+{
+	HARDASSERT(IsOStreamOpen(), "Trying to print to FileLogPolicy with no open stream.");
+	outStream << message << std::endl;
+}

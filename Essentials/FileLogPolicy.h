@@ -15,7 +15,7 @@ public:
 
 	void OpenOStream(const std::string& ostreamName) override;
 	void CloseOStream() override;
-	void Write(const std::string& message) override { HARDASSERT(IsOStreamOpen(), "Trying to print to FileLogPolicy with no open stream."); outStream << message << std::endl; }
+	void Write(const std::string& message) override;
 	const bool IsOStreamOpen() const override { return outStream.is_open(); }
 };
 
