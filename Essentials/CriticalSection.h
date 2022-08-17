@@ -5,7 +5,7 @@ class CriticalSection
 {
 public:
 	CriticalSection();
-	~CriticalSection();
+	virtual ~CriticalSection();
 
 	void Lock();
 	void Unlock();
@@ -13,4 +13,15 @@ public:
 private:
 	CRITICAL_SECTION m_cs;
 };
+
+class AutoCriticalSection : protected CriticalSection
+{
+public:
+	AutoCriticalSection();
+	~AutoCriticalSection();
+};
+
+
+
+
 

@@ -21,3 +21,12 @@ void CriticalSection::Unlock()
 	LeaveCriticalSection(&m_cs);
 }
 
+AutoCriticalSection::AutoCriticalSection() : CriticalSection()
+{
+	Lock();
+}
+
+AutoCriticalSection::~AutoCriticalSection()
+{
+	Unlock();
+}

@@ -86,7 +86,7 @@ struct _ArgumentToIntConverter //We use this struct to convert the enum values t
 		_Enumname(const _Enumeration& value) : m_Value(value) {} \
 		_Enumname(const _Enumname& other) : m_Value(other.m_Value) {} \
 		const _Enumname& operator=(const _Enumeration& value) { m_Value = value; } \
-		operator _Enumeration() { return static_cast<_Enumeration>(m_Value); } \
+		operator _Enumeration() { return m_Value; } \
         friend std::ostream &operator<<(std::ostream& outputStream, const _Enumname& smartEnum) \
         { \
             outputStream << smartEnum.ToString(); \
