@@ -26,64 +26,61 @@
     <ClInclude Include="pch.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
+    <ClInclude Include="Include\ConsoleLogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DebugLogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FileLogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ILogPolicy.h">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Logger.h">
+      <Filter>Source\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\LogSystem.h">
+      <Filter>Source\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MacroTricks.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SystemConfiguration.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\CriticalSection.h">
       <Filter>Source\ImplementationHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="SmartEnum.h">
+    <ClInclude Include="Include\Singleton.h">
       <Filter>Source\ImplementationHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="CriticalSection.h">
-      <Filter>Source\ImplementationHelpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Assertion.h">
+    <ClInclude Include="Include\Assertion.h">
       <Filter>Source\Assertion</Filter>
-    </ClInclude>
-    <ClInclude Include="Logger.h">
-      <Filter>Source\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="LogSystem.h">
-      <Filter>Source\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleLogPolicy.h">
-      <Filter>Source\Log\LogPolicy</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugLogPolicy.h">
-      <Filter>Source\Log\LogPolicy</Filter>
-    </ClInclude>
-    <ClInclude Include="FileLogPolicy.h">
-      <Filter>Source\Log\LogPolicy</Filter>
-    </ClInclude>
-    <ClInclude Include="ILogPolicy.h">
-      <Filter>Source\Log\LogPolicy</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemConfiguration.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="MacroTricks.h">
-      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="CriticalSection.cpp">
+    <ClCompile Include="Source\ConsoleLogPolicy.cpp">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DebugLogPolicy.cpp">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FileLogPolicy.cpp">
+      <Filter>Source\Log\LogPolicy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger.cpp">
+      <Filter>Source\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LogSystem.cpp">
+      <Filter>Source\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CriticalSection.cpp">
       <Filter>Source\ImplementationHelpers</Filter>
-    </ClCompile>
-    <ClCompile Include="LogSystem.cpp">
-      <Filter>Source\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsoleLogPolicy.cpp">
-      <Filter>Source\Log\LogPolicy</Filter>
-    </ClCompile>
-    <ClCompile Include="FileLogPolicy.cpp">
-      <Filter>Source\Log\LogPolicy</Filter>
-    </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Source\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugLogPolicy.cpp">
-      <Filter>Source\Log\LogPolicy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,7 +3,6 @@
 #include "pch.h"
 #include "DebugLogPolicy.h"
 #include "Assertion.h"
-#include <atlutil.h>
 
 void DebugLogPolicy::Write(const std::string& message)
 {
