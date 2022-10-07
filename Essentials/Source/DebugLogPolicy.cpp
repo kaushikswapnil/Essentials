@@ -1,6 +1,7 @@
-//#ifdef _DEBUG
-
 #include "pch.h"
+
+#ifdef _DEBUG
+
 #include "DebugLogPolicy.h"
 #include "Assertion.h"
 
@@ -28,6 +29,6 @@ const std::wstring DebugLogPolicy::ConvertStringToWString(const std::string& str
 	return retVal;
 }
 
-//#endif // _DEBUG
+#endif // _DEBUG
 
 

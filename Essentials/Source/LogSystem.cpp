@@ -1,14 +1,15 @@
 #include "pch.h"
 #include "LogSystem.h"
+#include "Logger.h"
 
-Logger LogSystem::m_Logger;
+Logger& GetLogger() { static Logger l; return l; }
 
 void LogSystem::PrintLog(const std::string& message)
 {
-	m_Logger.PrintLog(message);
+	GetLogger().PrintLog(message);
 }
 
 void LogSystem::Configure(const std::string& fileLogName, const bool logToDebug, const bool logToConsole)
 {
-	m_Logger.Configure(fileLogName, logToDebug, logToConsole);
+	GetLogger().Configure(fileLogName, logToDebug, logToConsole);
 }

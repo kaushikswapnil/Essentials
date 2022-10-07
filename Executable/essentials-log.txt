@@ -1,1 +1,2 @@
+[SoftAssert] Sup. Condition Failed: a != 0. File: D:\PersonalProjects\Essentials\Executable\Executable.cpp. Line: 32
 TestLog from main

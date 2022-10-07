@@ -1,6 +1,6 @@
 #pragma once
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
 
 #include "ILogPolicy.h"
 
@@ -20,4 +20,4 @@ private:
 	const std::wstring ConvertStringToWString(const std::string& stringToConvert) const;
 };
 
-//#endif // _DEBUG
+#endif // _DEBUG

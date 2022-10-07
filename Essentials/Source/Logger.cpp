@@ -1,5 +1,6 @@
-#include "Logger.h"
 #include "pch.h"
+
+#include "Logger.h"
 #include "Assertion.h"
 #include "FileLogPolicy.h"
 #include "DebugLogPolicy.h"
@@ -60,3 +61,4 @@ void Logger::SafelyDeletePolicies()
 
 	m_Policies.clear();
 }
+
